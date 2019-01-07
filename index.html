@@ -25,12 +25,12 @@
 			margin: 0;
 		}
 		#map {
-			width: 600px;
-			height: 400px;
+			min-width: 100vw;
+			min-height: 100vh;
 		}
 	</style>
 
-	<style>#map { width: 800px; height: 500px; }
+	<style>
 .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
 .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }</style>
 </head>
@@ -59,10 +59,7 @@
 		// 		console.error(error);
 		// 	});
 
-		d3.csv("cuestionario.csv", data => {
-			console.log(data);
-			
-		});
+
 
 		var map = L.map('map').setView([40.46, -3.7], 6);
 
@@ -89,6 +86,21 @@
 
 		info.addTo(map);
 
+
+		d3.csv("cuestionario_parsed2_v2.csv", data => {
+			data.forEach(row => {
+				
+				console.log( row.Sexo);
+				
+				var greenIcon = L.icon({
+					iconUrl: row.Sexo == 'Hombre' ? 'users-10.svg' : 'users-14.svg',
+					
+					iconSize: [38, 38], // size of the icon					
+				});
+				
+				L.marker([row.lat, row.lng], { icon: greenIcon }).addTo(map);
+			});
+		});
 
 		// get color depending on population density value
 		function getColor(d) {

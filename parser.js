@@ -26,7 +26,7 @@ fs.createReadStream('./cuestionario.csv')
                     resources = data.resourceSets[0].resources[0],
                     address = resources.address
                 // console.log(`${address.adminDistrict},${address.adminDistrict2},${address.formattedAddress},${address.locality},${address.postalCode},${resources.geocodePoints[0].coordinates}`)
-                console.log(`${address.adminDistrict},${address.adminDistrict2},${address.formattedAddress},${address.locality},${address.postalCode},${resources.geocodePoints[0].coordinates}`)
+                console.log(`${address.adminDistrict},${address.adminDistrict2},${address.formattedAddress},${address.locality},${address.postalCode},${resources.geocodePoints[0].coordinates},${obj.Edad},${obj.Sexo},${obj.Estudios},${obj.Ecivil}`)
             });
             res.on('end', () => {
                 // console.log('No more data in response.');
